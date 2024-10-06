@@ -36,12 +36,12 @@ function useSearch() {
 }
 
 function App() {
-  const { mappedMovies } = useMovies();
   const { search, updateSearch, error } = useSearch();
+  const { movies, loading, getMovies } = useMovies({ search });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(search);
+    getMovies();
   };
 
   const handleChange = (event) => {
@@ -67,9 +67,7 @@ function App() {
         {error && <p style={{ color: "red" }}>{error}</p>}
       </header>
 
-      <main>
-        <Movies movies={mappedMovies} />
-      </main>
+      <main>{loading ? <p>Cargando...</p> : <Movies movies={movies} />}</main>
     </div>
   );
 }
