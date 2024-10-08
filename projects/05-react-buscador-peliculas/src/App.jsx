@@ -1,39 +1,8 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useMovies } from "./hooks/useMovies";
 import { Movies } from "./components/Movies";
-
-function useSearch() {
-  const [search, updateSearch] = useState("");
-  const [error, setError] = useState(null);
-  const isFirstInput = useRef(true);
-
-  useEffect(() => {
-    if (isFirstInput.current) {
-      isFirstInput.current = search === "";
-      return;
-    }
-
-    if (search === "") {
-      setError("no se puede hacer una busqueda vacia");
-      return;
-    }
-
-    if (search.match(/^[0-9]+$/)) {
-      setError("la busqueda no puede ser un numero");
-      return;
-    }
-
-    if (search.length < 3) {
-      setError("la busqueda debe ser mayor a 3 caracteres");
-      return;
-    }
-
-    setError(null);
-  }, [search]);
-
-  return { search, updateSearch, error };
-}
+import { useSearch } from "./hooks/useSearch";
 
 function App() {
   const [sort, setSort] = useState(false);
