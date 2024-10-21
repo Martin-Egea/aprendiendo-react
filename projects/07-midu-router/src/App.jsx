@@ -1,8 +1,20 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { EVENTS } from "./consts";
+
 import { HomePage } from "./pages/Home";
 import { AboutPage } from "./pages/About";
+
+/* const routes = [
+  {
+    path: "/",
+    Component: HomePage,
+  },
+  {
+    path: "/about",
+    Component: AboutPage,
+  },
+]; */
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
